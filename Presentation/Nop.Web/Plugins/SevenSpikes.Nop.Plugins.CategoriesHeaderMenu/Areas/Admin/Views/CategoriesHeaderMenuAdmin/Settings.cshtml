@@ -1,0 +1,31 @@
+﻿@model CategoriesHeaderMenuSettingsModel
+@using Nop.Web.Framework.UI;
+@{
+    Layout = AdminViewLocations.AdminLayoutViewPath;
+
+    Html.SetActiveMenuItemSystemName("SevenSpikes.CategoriesHeaderMenu.Admin.Submenus.Settings");
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="content-header clearfix">
+        <h1 class="pull-left">
+            @T("SevenSpikes.CategoriesHeaderMenu.Admin.Settings.Common")
+        </h1>
+        <div class="pull-right">
+            <button type="submit" name="save" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="form-horizontal">
+            @await Component.InvokeAsync("StoreScopeConfiguration")            
+            @await Html.PartialAsync("_Settings.Info", Model) 
+        </div>
+    </div>
+}
